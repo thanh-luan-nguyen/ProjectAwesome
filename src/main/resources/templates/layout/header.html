@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<!-- layout:decorate どのlayoutに組み込むかを指定します -->
+
 <head>
+    <!-- component của layout thì k cần gì trong header (?) -->
 </head>
+
 <body>
-  <nav layout:fragment="header" class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">SpringSample</a>
-      </div>
-      <form method="post" th:action="@{/logout}">
-        <button class="btn btn-link pull-right navbar-brand" type="submit">
-          ログアウト
-        </button>
-      </form>
-    </div>
-  </nav>
+    <nav layout:fragment="header" class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
+        <!-- layout側のHTMLから参照されるkey名を指定する　(layout:replace => layout:fragment) -->
+        <!-- Bootstrap note: navbar-inverse là BS3, renders black navbar  -->
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">SpringSample</a>
+                <!-- Bootstrap note: navbar-brand hightlights logo -->
+            </div>
+            <form method="post" th:action="@{/logout}">
+                <button class="btn btn-link pull-right navbar-brand" type="submit">ログアウト</button>
+                <!-- Bootstrap note: pull-right: floats to the right -->
+            </form>
+        </div>
+    </nav>
 </body>
+
 </html>

@@ -13,7 +13,7 @@ public class LoginController {
         return "login/login";
     }
 
-    /** ユーザー一覧画面にリダイレクト */
+    /* user一覧画面にredirect */
     @PostMapping("/login")
     public String postLogin() {
         return "redirect:/user/list";
