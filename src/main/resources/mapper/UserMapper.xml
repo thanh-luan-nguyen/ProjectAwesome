@@ -4,6 +4,20 @@
 
 <!-- Mapperとxmlのマッピング -->
 <mapper namespace="com.example.repository.UserMapper">
+	
+	<!-- mapping定義（ユーザー） -->
+	<!-- đọc trang 145 for details -->
+	<resultMap type="com.example.domain.user.model.MUser" id="user">
+		<!-- id tag là bắt buộc -->
+		<id column="user_id" property="userId"/>
+		<result column="password" property="password"/>
+		<result column="user_name" property="userName"/>	
+		<result column="birthday" property="birthday"/>	
+		<result column="age" property="age"/>	
+		<result column="gender" property="gender"/>	
+		<result column="department_id" property="departmentId"/>
+		<result column="role" property="role"/>	
+	</resultMap>
 
     <!-- user1件登録 -->
     <insert id="insertOne">
@@ -28,4 +42,23 @@
             #{role}
         )
     </insert>
+
+    <!-- user複数権取得 -->
+    <select id="findMany" resultType="MUser">
+        select
+            *
+        from
+            m_user
+    </select>
+    
+    <!--user１件検索-->
+	<select id="findOne" resultMap="user">
+    	select
+    		*
+    	from
+    		m_user
+    	where
+    		user_id = #{userId}
+    </select>
+
 </mapper>
