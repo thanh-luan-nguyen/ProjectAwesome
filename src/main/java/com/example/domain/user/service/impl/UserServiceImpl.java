@@ -1,13 +1,12 @@
 package com.example.domain.user.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.domain.user.model.MUser;
 import com.example.domain.user.service.UserService;
 import com.example.repository.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,5 +31,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public MUser getOneUser(String userId) {
 		return userMapper.findOne(userId);
+	}
+
+	/** user更新（１件） */
+	@Override
+	public void updateOneUser(String userId,
+							  String password,
+							  String userName){
+		userMapper.updateOne(userId, password, userName);
+	}
+
+	/** user削除（１件） */
+	@Override
+	public void deleteOneUser(String userId){
+		int count = userMapper.deleteOne(userId);
 	}
 }
