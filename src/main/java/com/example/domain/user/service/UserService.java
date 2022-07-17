@@ -9,7 +9,7 @@ public interface UserService {
 	public void signup(MUser user);
 
 	/** users取得 */
-	public List<MUser> getUsers();
+	public List<MUser> getUsers(MUser user);
 
 	/** users取得(１件） */
 	public MUser getOneUser(String userId);

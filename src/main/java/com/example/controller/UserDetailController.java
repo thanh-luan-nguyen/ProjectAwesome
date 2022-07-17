@@ -30,6 +30,7 @@ public class UserDetailController {
 		user.setPassword(null);
 		// convert MUser to UserDetailForm
 		userDetailForm = modelMapper.map(user, UserDetailForm.class);
+
 		// Modelに登録
 		model.addAttribute("userDetailForm", userDetailForm);
 		// user詳細画面を表示
@@ -46,7 +47,6 @@ public class UserDetailController {
 
 		MUser user = userService.getOneUser(userId);
 
-		if (userName.isEmpty()) userName = user.getUserName();
 		if (password.isEmpty()) password = user.getPassword();
 
 		// userを更新

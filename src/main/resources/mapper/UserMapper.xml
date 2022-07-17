@@ -8,7 +8,7 @@
 	<!-- mapping定義（ユーザー） -->
 	<!-- đọc trang 145 for details -->
 	<resultMap type="com.example.domain.user.model.MUser" id="user">
-		<!-- id tag là bắt buộc -->
+		<!-- id is required -->
 		<id column="user_id" property="userId"/>
 		<result column="password" property="password"/>
 		<result column="user_name" property="userName"/>	
@@ -16,8 +16,15 @@
 		<result column="age" property="age"/>	
 		<result column="gender" property="gender"/>	
 		<result column="department_id" property="departmentId"/>
-		<result column="role" property="role"/>	
+		<result column="role" property="role"/>
+        <association property="department" resultMap="department"/>
 	</resultMap>
+
+    <!-- mapping定義(部署) -->
+    <resultMap type="com.example.domain.user.model.Department" id="department">
+        <id column="department_id" property="departmentId"/>
+        <result column="department_name" property="departmentName"/>
+    </resultMap>
 
     <!-- user1件登録 -->
     <insert id="insertOne">
@@ -49,6 +56,14 @@
             *
         from
             m_user
+        <where>
+            <if test="userId != null">
+                user_id like '%' || #{userId} || '%'
+            </if>
+            <if test="userName != null">
+                and user_name like '%' || #{userName} || '%'
+            </if>
+        </where>
     </select>
     
     <!--user１件検索-->
@@ -57,6 +72,8 @@
     		*
     	from
     		m_user
+            left join m_department
+                on m_user.department_id = m_department.department_id
     	where
     		user_id = #{userId}
     </select>

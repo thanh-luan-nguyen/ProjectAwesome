@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
 
 	/** users取得 */
 	@Override
-	public List<MUser> getUsers() {
-		return userMapper.findMany();
+	public List<MUser> getUsers(MUser user) {
+		return userMapper.findMany(user);
 	}
 
 	/** users取得 */
