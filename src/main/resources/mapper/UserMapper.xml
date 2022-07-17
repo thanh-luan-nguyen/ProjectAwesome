@@ -18,12 +18,21 @@
 		<result column="department_id" property="departmentId"/>
 		<result column="role" property="role"/>
         <association property="department" resultMap="department"/>
+        <collection property="salaryList" resultMap="salary"
+                    columnPrefix="salary_"/> <!-- cơ bản là kết quả select column name nó sẽ bỏ đi salary_-->
 	</resultMap>
 
-    <!-- mapping定義(部署) -->
+    <!-- mapping定義(department) -->
     <resultMap type="com.example.domain.user.model.Department" id="department">
         <id column="department_id" property="departmentId"/>
         <result column="department_name" property="departmentName"/>
+    </resultMap>
+
+    <!-- mapping定義(salary) -->
+    <resultMap type="com.example.domain.user.model.Salary" id="salary">
+        <id column="user_id" property="userId"/>
+        <id column="year_month" property="yearMonth"/>
+        <result column="salary" property="salary"/>
     </resultMap>
 
     <!-- user1件登録 -->
@@ -69,13 +78,25 @@
     <!--user１件検索-->
 	<select id="findOne" resultMap="user">
     	select
-    		*
+    		m_user.user_id,
+            m_user.password,
+            m_user.user_name,
+            m_user.birthday,
+            m_user.age,
+            m_user.gender,
+            m_department.department_id,
+            m_department.department_name,
+            t_salary.user_id as salary_user_id,
+            t_salary.year_month as salary_year_month,
+            t_salary.salary as salary_salary
     	from
     		m_user
             left join m_department
                 on m_user.department_id = m_department.department_id
+            left join t_salary
+                on m_user.user_id = t_salary.user_id
     	where
-    		user_id = #{userId}
+    		m_user.user_id = #{userId}
     </select>
 
     <!--user１件更新-->

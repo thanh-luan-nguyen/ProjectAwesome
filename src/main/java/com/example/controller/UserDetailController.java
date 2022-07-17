@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import com.example.domain.user.model.MUser;
 import com.example.domain.user.service.UserService;
 import com.example.form.UserDetailForm;
 
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserDetailController {
@@ -28,11 +30,17 @@ public class UserDetailController {
 		// user取得
 		MUser user = userService.getOneUser(userId);
 		user.setPassword(null);
+
 		// convert MUser to UserDetailForm
 		userDetailForm = modelMapper.map(user, UserDetailForm.class);
 
+		// ModelMapper cannot copy List, so we have to call setter
+		userDetailForm.setSalaryList(user.getSalaryList());
+		log.info(userDetailForm.toString());
+
 		// Modelに登録
 		model.addAttribute("userDetailForm", userDetailForm);
+
 		// user詳細画面を表示
 		return "user/detail";
 	}
