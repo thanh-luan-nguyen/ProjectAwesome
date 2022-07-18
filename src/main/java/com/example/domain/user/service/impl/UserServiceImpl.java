@@ -5,6 +5,7 @@ import com.example.domain.user.service.UserService;
 import com.example.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,11 +35,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/** user更新（１件） */
+	@Transactional /** khi bị exception, thì sẽ rollback, có thể gán ở class level */
 	@Override
-	public void updateOneUser(String userId,
-							  String password,
-							  String userName){
+	public void updateOneUser(String userId, String password, String userName){
 		userMapper.updateOne(userId, password, userName);
+
+		//　例外を発生させる
+		//int i = 1 / 0;
 	}
 
 	/** user削除（１件） */

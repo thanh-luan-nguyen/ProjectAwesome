@@ -57,8 +57,12 @@ public class UserDetailController {
 
 		if (password.isEmpty()) password = user.getPassword();
 
-		// userを更新
-		userService.updateOneUser(userId, password, userName);
+		try {
+			// userを更新
+			userService.updateOneUser(userId, password, userName);
+		} catch (Exception e) {
+			log.error("user更新error", e);
+		}
 
 		// user一覧画面にredirect
 		return "redirect:/user/list";
