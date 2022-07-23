@@ -4,8 +4,10 @@
   layout:decorate="~{layout/layout}">
 <head>
   <title>ユーザー詳細</title>
-  <!-- CSS読込 -->
+  <!-- CSS -->
   <link rel="stylesheet" th:href="@{/css/user/list.css}">
+  <!-- JS -->
+  <script th:src="@{/js/user/detail.js}" defer></script>
 </head>
 <body>
   <div layout:fragment="content">
@@ -57,15 +59,22 @@
         </tbody>
       </table>
 
-      <!-- ボタンエリア -->
+      <!-- button area -->
       <div class="text-center">
-        <!-- 削除ボタン -->
         <button class="btn btn-danger" type="submit" name="delete">
           削除
         </button>
-        <!-- 更新ボタン -->
         <button class="btn btn-primary" type="submit" name="update">
           更新
+        </button>
+      </div>
+      <!-- REST button area -->
+      <div class="text-center mt-2">
+        <button id="btn-delete" class="btn btn-danger" type="button">
+          削除(REST)
+        </button>
+        <button id="btn-update" class="btn btn-primary" type="button">
+          更新(REST)
         </button>
       </div>
 

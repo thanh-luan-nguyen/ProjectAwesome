@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login").permitAll() //直リンクOK
                 .antMatchers("/user/signup").permitAll() //直リンクOK
+                .antMatchers("/admin").hasAuthority("ROLE_ADMIN") // 権限制御
                 .anyRequest().authenticated(); //それ以外は直リンクNG
 
         http.formLogin()
@@ -62,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // ********** với implementation trên, ko cần logout controller nữa ************
 
         // CSRF対策を無効に設定（一時的）
-        http.csrf().disable();
+        //http.csrf().disable();
     }
 
     /** 認証の設定 */

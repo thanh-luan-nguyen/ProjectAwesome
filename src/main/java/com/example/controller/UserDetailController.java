@@ -53,9 +53,9 @@ public class UserDetailController {
 		String userName = userDetailForm.getUserName();
 		String password = userDetailForm.getPassword();
 
-		MUser user = userService.getOneUser(userId);
-
-		if (password.isEmpty()) password = user.getPassword();
+		//MUser user = userService.getOneUser(userId);
+		//
+		//if (password.isEmpty()) password = user.getPassword();
 
 		try {
 			// userを更新
