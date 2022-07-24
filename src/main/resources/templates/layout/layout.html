@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- xmlns:layout để sử dụng layout của thymeleaf, include link ultraq.net.nz ở trên -->
 
 <head>
@@ -8,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS読込 -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/user/layout.css}">
     <!-- JS読込 -->
     <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -34,7 +33,7 @@
         <div class="row">
             <div class="col-sm-10 offset-sm-2 main">
                 <div layout:fragment="content">
-                <!--
+                    <!--
                   ***
                   ***
                     content goes here
